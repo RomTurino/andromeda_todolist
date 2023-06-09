@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Oswald:wght@600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    font-family: 'Comfortaa';
+    height: 100vh;
+}
+
+
+.navbar {
+    padding: 0;
+}
+
+.navbar button {
+    padding: 0;
+    margin-left: 9px;
+}
+
+.navbar-toggler-icon {
+    width: 100%;
+}
+
+.navbar-brand img {
+    width: 72px;
+    height: 60px;
+}
+
+.navbar-brand {
+    /* width: 90%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar>.container-fluid {
+    justify-content: space-between;
+    background: #FFE794;
+}
+
+
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.offcanvas {
+    margin-top: 70px;
+}
+
+
+
+.navbar h1 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.offcanvas-body {
+    background: #FFFBEF;
+}
+
+.offcanvas-header {
+    justify-content: center;
+}
+
+.offcanvas-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+}
+
+.nav-item input[type="text"] {
+    font-family: "Oswald";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 48px;
+    background: rgba(209, 198, 158, 0.7);
+    box-shadow: 0px 2px 8px rgba(205, 205, 205, 0.25);
+    border-radius: 8px;
+    padding: 14px 67px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    border: 0;
+    outline: 0;
+}
+
+.project_item {
+    background: rgba(244, 208, 137, 0.4);
+    box-shadow: 0px 2px 8px rgba(205, 205, 205, 0.25);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 22px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 22px;
+}
+
+.offcanvas-backdrop {
+    display: none;
+}
+
+.content_active {
+    margin-left: 20%;
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    background-color: #FFE1BD;
+}
+
+.content {
+    margin-top: 100px;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    padding-right: 3.3%;
+    padding-left: 3.3%;
+    gap: 40px;
+}
+
+.content h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    padding-bottom: 10px;
+    align-self: center;
+}
+
+.content button {
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 500;
+
+}
+
+.new_item {
+    background: #F8CA94;
+    font-size: 26px;
+    line-height: 26px;
+    padding: 17px 0;
+    border: 0;
+}
+
+.new_item:active {
+    filter: contrast(2);
+}
+
+.priority {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+
+}
+
+.item {
+    padding: 10px 0;
+}
+
+.high {
+    background-color: #FAA136 !important;
+}
+
+.high_border {
+    border: 6px solid #FAA136;
+}
+
+.medium {
+    background-color: #FFB760 !important;
+}
+
+.medium_border {
+    border: 6px solid #FFB760;
+}
+
+.low {
+    background-color: #FFD8A9 !important;
+}
+
+.low_border {
+    border: 6px solid #FFD8A9;
+}
+
+.gray_border {
+    border: 6px solid #d6e5e5;
+}
+
+.text {
+    align-self: center;
+    display: block;
+    padding: 10px 0;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFD874;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    position: relative;
+    z-index: 1030;
+    margin-top: 100px;
+}
+
+
+/* Модальное окно добавления дела */
+.modal_new {
+    display: none;
+    /* По умолчанию окно закрыто */
+    z-index: 1040;
+    /* Чтобы сделать окно поверх всех элементов */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Полупрозрачный темный фон */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: scroll;
+    /* При переполнении окна делаем скролл */
+    padding: 20px;
+
+}
+
+.modal_change {
+    display: none;
+    /* По умолчанию окно закрыто */
+    z-index: 1040;
+    /* Чтобы сделать окно поверх всех элементов */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Полупрозрачный темный фон */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: scroll;
+    /* При переполнении окна делаем скролл */
+    padding: 20px;
+
+}
+
+.modal--open {
+    display: flex;
+    /* Модификатор для открытого окна */
+}
+
+.modal__box {
+    width: 100%;
+    max-width: 722px;
+    padding: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: #FFD7A7;
+    box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+.modal__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 33px;
+}
+
+.modal__info {
+    color: #111;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.modal__bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* блок скролла веб-страницы */
+.lock {
+    overflow-y: hidden;
+}
+
+.item_one_line {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    background: #FFD7A7;
+    color: #585353;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #635F5F;
+    width: 100%;
+    padding: 2px;
+    margin-bottom: 13px;
+}
+
+.item_priority {
+    width: 100%;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 8px;
+    border: 0;
+    background-color: #FAA136;
+}
+
+.item_priority {
+    appearance: none;
+}
+
+.item_priority:not([multiple]) {
+    background-repeat: no-repeat;
+    background-position: 99%;
+    background-image: url("data:image/svg+xml,%3Csvg width='33' height='28' viewBox='0 0 33 28' fill='none' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Crect width='33' height='28' fill='url(%23pattern0)'/%3E%3Cdefs%3E%3Cpattern id='pattern0' patternContentUnits='objectBoundingBox' width='1' height='1'%3E%3Cuse xlink:href='%23image0_73_158' transform='matrix(0.01 0 0 0.0117857 0 -0.0892857)'/%3E%3C/pattern%3E%3Cimage id='image0_73_158' width='100' height='100' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAAEIklEQVRYCe2Zy24aMRSGPaA+YVWhqJEI2QDqotn0KbpoNhWwKqSKqqjqE0YT9/yUkUiDYW62zxn9kQ1zs33O9zGezIxz/CMBEiABEiABEiABEiABEiABEiABEiABEiABEiABEiABEiABEiABEiABEiABEiABEiCBpgSKpg1Cx+/W64l37iv2S6dfpovFE5aHWmPlK+y6I9tuNkvn/XfpqerPu6L4dDOfr2Tb4ErMfCuAraHJL+Vazoytc24s9biUIml6s1w+Hm+0vhw7305CzgRXcR+UlBT5thZSI7hBSUmV76ii1uQbc6hMUw/S5v9pSja9KWO5nvxEmzd7jGxA7KnybXyGIDi5NhxfwOtiNXmhT51vIyEdgqukmZKSI9/aQnoIzpSUXPnWEtJjcCak5Mz3opAIwamWkjvfs0IiBqdSioZ8g0J+bDYfCu9/Cbk6/9rKYa2LipvHBvcZrRM9NCx9UVzN5vPfh/VXX6NXa0crxcvLvazGliFDyCOXothtV6uPWMlRE8pAemP5oX/DwqkaFCI3c8Gz51RHHbfh5jGLlMQy/mHyPsg2KEROq8/SupSaqiSXkkWGc6Ufje5CUINC9nOc9xNp+Cw1VYGUJI9ZcAFv8Dikr/yf5SnHZM820GPw1KmOl7n9vUxfuLi/q7Yl+I56Rw8ZAqbN458uqUPGlbyO+HOuk4tC0HhIUjTLAOtaQnDgEKRolwHOtYXgYMtSLMgA40ZC0MCiFCsywLexEDSyJMWSDLBtJQQNLUixJgNcWwtBY81SLMoA005C0IFGKVZlgGdnIehEkxTLMsCyFyHoSIMU6zLAsTch6CynFIyv9XHIPraaH70KwZi5nqBibKkp3t/IMPsS5cVa70IQaiYpGDpVjSIDwUcRgo4zTV8YOnat9dS2bRDRhCCgAUqJKgPMgi+osLNrxbN/MX4r/aR88yjDRSmYpmbIKUrvh06F12Ep4tcAzpToZ0aFP4kQDGZYSjIZ4JRMCAYzKCWpDDBKKgQDGpKSXAb4JBeCQQ1IySIDbLIIwcCKpWSTAS7ZhGBwhVKyygCTrEIQgCIp2WWAR3YhCEKBFBUywEKFEASSUYoaGeCgRgiCySBFlQwwUCUEASWUok4G8lcnBEElkKJSBnJXKQSBRZSiVgbyVisEwUWQoloGclYtBAH2KEW9DOSrXgiC7EGKCRnI1YQQBNpBihkZyNOMEATbQoopGchxhA8rFe+z5Rd0K/GWUi+V0nk/Q5tLB2raL/lpCqdeLLv1+to7t3XOjaWeKpAxFRmPp3Zq3mZSCICemb7MTVPIp6pmhSCBE1JMy0BOpoUgAZm+JjJ93WNZkrmbLhZPWGYlARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIYFoG/1uipyIAON54AAAAASUVORK5CYII='/%3E%3C/defs%3E%3C/svg%3E%0A");
+}
+
+.item_description {
+    background: rgba(123, 123, 123, 0.33);
+    width: 100%;
+    min-height: 130px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 8px;
+
+}
+
+.add_button,
+.change_button {
+    background: #7FDB88;
+    border-radius: 8px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 11px 0;
+    border: 0;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.save_color {
+    background-color: #7FDB88;
+    margin-bottom: 8px;
+}
+
+.done_color {
+    background-color: #7E8BF9;
+    margin-bottom: 8px;
+}
+
+.delete_color {
+    background-color: #FF5757;
+    ;
+}

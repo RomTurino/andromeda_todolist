@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <link rel="stylesheet" href="{%static 'css/media.css'%}">
+    <link rel="shortcut icon" href="{%static 'images/icon.png'%}" type="image/x-icon">
+    <title>Todolist</title>
+</head>
+
+<body>
+
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+
+            <button onclick="MainAppear()" class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon"></span> -->
+                <svg class="navbar-toggler-icon" width="89" height="64" viewBox="0 0 89 64" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="89" height="64" fill="url(#pattern0)" />
+                    <defs>
+                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_5_7" transform="matrix(0.010989 0 0 0.0152816 0 -0.195312)" />
+                        </pattern>
+                        <image id="image0_5_7" width="91" height="91"
+                            xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFsAAABbCAYAAAAcNvmZAAAABmJLR0QA/wD/AP+gvaeTAAAC2UlEQVR4nO3cP2sUQRjH8e/d5ZKcMeoFFFQQCYKQQivByjdgYy12FuorEH0D9tpbRsXCQiwUEdtUVqJgISIhioVoLKKeicXseON6+2du1p3L5veB4cLuPjs7T9hk2HluQUREREREREREREREROJoxb4AYC/QBuaBqWRb39nvbp8FesnPU8k+RsTsBrojYlx7gE7OdXWT87g2gVVgGXiaEztSFck+BZzAJG1fqs0nrYMZXCvZTvI5Cb/scV0HbtTVWQd4AGzt0PYdWPRJWNvn4JQzwLmA+O1uGjjrExCS7AMBsU1xyOfgkGSvYG6nnexNnZ3dJP7fzljtC7DfJ1l5U58yHgOfgQXMP4wtYCPZ180KaoB14ALwwifof0+93KneLmCG4TTQ1We0UXNdy56vSNF8uog7Z/8JvAMeAh8DzikiIiIiIiIiIiKNMImr22VKEtJlDO5KfV4ZwzQwl9N3VtmDaw24D7wsOO4fVST7MLCEGXA/+XTLGroMaz9sIuyzaDu4mWTbdjEALgG36+qwBdwCfhF/iSpGWwcOBmexpNM1DGjS22WfhIWsrh8NiG0KrxyEJNtrsbOh3tbZ2R3i38qx2gZwxCdZoaUMjzAzikWyV8GbaABcAZ77BFU9z3bLFOx0zy1HsOXBWVM9uz/NLYnI67MstwzZ1xpwD3g1ZryIiIiIiIiIiIg0xiSWMowyhylDgL8fz7Yxj2Ut9xGt+22yvBKGovIGGJZO/ADeY74t9qHktf9RRbJ7mLW49BsZbDlDD7PAYJNkB2cHYBOWfmad9Wx7EnwDzmOSXpurwFfiL1HFaJ/IXtCo3MkaBjTp7aJPwkJu06WA2KY45nNwSLJfB8Q2xWqdnT0h/q0cqw2A4+EpLG8BuIupoYg9+LrbNd9kVTXPnsW8WadM6YItCc5740JeVWvR2xjGfQuDW2qcZRMzz14Gno3Rh4iIiIiIiIiIiIiIiETxG6eWavM99YEeAAAAAElFTkSuQmCC" />
+                    </defs>
+                </svg>
+
+            </button>
+
+            <div class="navbar-brand d-flex">
+                <img src="{%static 'images/icon.png'%}" alt="icon">
+                <h1>Список дел</h1>
+            </div>
+
+            <div class="empty"></div>
+
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <!-- <div class="offcanvas-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div> -->
+                <div class="offcanvas-body">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Списки</h5>
+                    </div>
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-0">
+                        <li class="nav-item">
+                            <input type="text" placeholder="Новый список" aria-current="page">
+                            
+                        </li>
+                        {%for list in todolists%}
+                        <li class="nav-item">
+                            <div class="project_item">
+                                <span></span>
+                                <span>
+                                    <a href="{%url 'todolist' list.id%}"
+                                        style="color:black;text-decoration:none">{{list}}</a>
+                                </span>
+                                <a href="{%url 'delete_todolist' list.id%}">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M18.8 16L24.3 10.5C25.1 9.7 25.1 8.5 24.3 7.7C24 7.3 23.5 7 23 7C22.5 7 22 7.2 21.6 7.6L16 13.2L10.5 7.7C9.7 6.9 8.4 6.9 7.7 7.7C7.3 8 7 8.5 7 9.1C7 9.7 7.2 10.1 7.6 10.5L13.1 16L7.6 21.5C7.3 21.9 7 22.4 7 23C7 23.5 7.2 24 7.6 24.4C8 24.8 8.5 25 9 25C9.5 25 10 24.8 10.4 24.4L15.9 18.9L21.4 24.4C22.2 25.2 23.5 25.2 24.2 24.4C25 23.6 25 22.3 24.2 21.6L18.8 16Z"
+                                            fill="black" />
+                                    </svg>
+                                </a>
+
+                            </div>
+                        </li>
+                        {%endfor%}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <div class="wrapper">
+        <div class="modal_new" id="modal_new">
+            <div class="modal__box">
+                <h4 class="modal__title">Новое дело</h4>
+                <form method="post" class="modal__form">
+                    {%csrf_token%}
+                    {{form.as_p}}
+                    <!-- <p><input type="text" placeholder="Заголовок дела" class="item_one_line"></p>
+                    <p><input type="date" placeholder="дд.мм.гггг" class="item_one_line"></p>
+                    <p>
+                        <select class="item_priority" onclick="colorchanger(this)">
+                            <option value="s1" name="#FAA136" class="high" selected>Высший приоритет</option>
+                            <option value="s2" name="#FFB760" class="medium">Средний приоритет</option>
+                            <option value="s3" name="#FFD8A9" class="low">Низший приоритет</option>
+                        </select>
+                    </p>
+                    <p><textarea placeholder="Описание" class="item_description"></textarea></p> -->
+                    <input type="submit" name="cucumber" value="Добавить" class="add_button">
+                </form>
+            </div>
+        </div>
+        {%block modal%}
+        {%endblock modal%}
+        <section class="content">
+            <h2>{{name_list.title}}</h2>
+            <button class="new_item btn_new" id="btn_new">Новое дело</button>
+            {%for todo in todos%}
+            {%if todo.priority == high%}
+            <div class="high priority">
+                <span class="text">Высший приоритет</span>
+                <button class="high_border item btn_change">
+                    <a href="{%url 'update_todo' name_list.id todo.id%}" style="text-decoration:none;color:black">
+                        {{todo.title}}
+                        {%if todo.todo_date is not None%}
+                        <br>
+                        {{todo.todo_date}}
+                        {%endif%}
+                        {%if todo.description is not None%}
+                        <br>
+                        {{todo.description}}
+                        {%endif%}
+                    </a>
+                </button>
+            </div>
+            {%endif%}
+            {%if todo.priority == medium%}
+            <div class="medium priority">
+                <span class="text">Средний приоритет</span>
+                <button class="medium_border item btn_change">
+                    <a href="{%url 'update_todo' name_list.id todo.id%}" style="text-decoration:none;color:black">
+                        {{todo.title}}
+                        {%if todo.todo_date is not None%}
+                        <br>
+                        {{todo.todo_date}}
+                        {%endif%}
+                        {%if todo.description is not None%}
+                        <br>
+                        {{todo.description}}
+                        {%endif%}
+                    </a>
+                </button>
+            </div>
+            {%endif%}
+            {%if todo.priority == low%}
+            <div class="low priority">
+                <span class="text">Низкий приоритет</span>
+                <button class="low_border item btn_change">
+                    <a href="{%url 'update_todo' name_list.id todo.id%}" style="text-decoration:none;color:black">
+                        {{todo.title}}
+                        {%if todo.todo_date is not None%}
+                        <br>
+                        {{todo.todo_date}}
+                        {%endif%}
+                        {%if todo.description is not None%}
+                        <br>
+                        {{todo.description}}
+                        {%endif%}
+                    </a>
+                </button>
+            </div>
+            {%endif%}
+            {%if todo.priority is None%}
+            <div class="priority" style="background:#d6e5e5;">
+                <span class="text">Завершено {{todo.complete_date}}</span>
+                <button class="gray_border item btn_change">
+                    <s>
+                        <a href="{%url 'update_todo' name_list.id todo.id%}" style="text-decoration:none;color:black">
+                            {{todo.title}}
+                            {%if todo.todo_date is not None%}
+                            <br>
+                            {{todo.todo_date}}
+                            {%endif%}
+                            {%if todo.description is not None%}
+                            <br>
+                            {{todo.description}}
+                            {%endif%}
+                        </a>
+                    </s>
+
+                </button>
+            </div>
+            {%endif%}
+            {%endfor%}
+
+
+        </section>
+
+        <footer>Иконки от Icons8</footer>
+    </div>
+
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'js/index.js'%}"></script>
+</body>
+
+</html>

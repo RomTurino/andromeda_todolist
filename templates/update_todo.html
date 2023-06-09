@@ -1,0 +1,27 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block modal%}
+<div class="modal_change modal--open" id="modal_change">
+    <div class="modal__box">
+        {{error}}
+        <h4 class="modal__title">Изменить дело</h4>
+        <form method="post" class="modal__form">
+            {{form.as_p}}
+            {%csrf_token%}
+            <button type="submit" class="change_button save_color">
+                <img src="{%static 'images/save.png'%}">Сохранить
+            </button>
+            <button type="button" class="change_button done_color">
+                <a href="{%url 'done_todo' name_list.id todo_id%}">
+                    <img src="{%static 'images/done.png'%}">Отметить выполненным
+                </a>
+            </button>
+            <button type="button" class="change_button delete_color">
+                <a href="{%url 'delete_todo' name_list.id todo_id%}">
+                    <img src="{%static 'images/delete.png'%}">Удалить
+                </a>
+            </button>
+        </form>
+    </div>
+</div>
+{%endblock modal%}

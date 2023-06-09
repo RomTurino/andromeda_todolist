@@ -1,0 +1,13 @@
+{%extends 'index.html'%}
+{%block modal%}
+<div class="modal_new" id="modal_new">
+    <div class="modal__box">
+        <h4 class="modal__title">Новое дело</h4>
+        <form method="post" class="modal__form">
+            {%csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="Добавить" class="add_button">
+        </form>
+    </div>
+</div>
+{%endblock modal%}
